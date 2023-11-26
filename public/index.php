@@ -23,7 +23,7 @@ try {
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if ($urlPath == '/appointments' && $_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($urlPath == '/appointments/available' && $_SERVER['REQUEST_METHOD'] == 'GET') {
     $doctorUuid = $_GET['doctorUuid'] ?? null;
 
     if ($doctorUuid) {
