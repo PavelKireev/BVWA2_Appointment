@@ -1,0 +1,12 @@
+{
+  "require": {
+    "vlucas/phpdotenv": "v2.6.9",
+    "ext-pdo": "*",
+    "ext-pgsql": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "src/"
+    }
+  }
+}
