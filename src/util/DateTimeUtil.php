@@ -7,7 +7,7 @@ use Src\db\dao\AppointmentDAO;
 
 class DateTimeUtil
 {
-    private const REGULAR_DATE_FORMAT = 'd-m-Y H:i';
+    private const REGULAR_DATE_FORMAT = 'Y-m-d H:i';
 
     public static function toDateTime(string $dateTime): DateTime
     {
@@ -30,7 +30,7 @@ class DateTimeUtil
         // Fetch busy appointment dates using AppointmentDAO
         $busyAppointments = $appointmentDAO->getAppointmentsByDoctor($workingHours[0]->doctorUuid);
         $busyDates = array_map(function ($appointment) {
-            return DateTime::createFromFormat('m/d/Y H:i:s', $appointment->time);
+            return DateTime::createFromFormat('Y-m-d H:i:s', $appointment->time);
         }, $busyAppointments);
 
         $currentTime = new DateTime();
@@ -47,7 +47,7 @@ class DateTimeUtil
 
                 while ($dateTimeStart < $dateTimeTill) {
                     if (!in_array($dateTimeStart, $busyDates)) {
-                        $result[] = clone $dateTimeStart; // Add a copy of the DateTime object
+                        $result[] = clone $dateTimeStart;
                     }
                     $dateTimeStart->modify('+30 minutes');
                 }

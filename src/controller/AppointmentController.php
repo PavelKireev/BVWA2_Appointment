@@ -27,17 +27,3 @@ class AppointmentController
         return DateTimeUtil::generateAppointmentTimeList($doctorWorkingHours, $this->appointmentDAO);
     }
 }
-
-$pdo = new PDO('pgsql:host=localhost;dbname=appointment_db', '', '');
-
-$controller = new AppointmentController($pdo);
-
-$doctorUuid = $_GET['doctorUuid'] ?? null;
-if ($doctorUuid) {
-    $availableTimes = $controller->getAvailableAppointmentTimes($doctorUuid);
-    header('Content-Type: application/json');
-    echo json_encode($availableTimes);
-} else {
-    http_response_code(400);
-    echo "Bad Request: Missing doctorUuid";
-}
